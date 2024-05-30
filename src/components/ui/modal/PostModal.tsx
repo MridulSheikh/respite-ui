@@ -5,24 +5,54 @@ import { useCurrentUser } from "../../../redux/features/auth/authSlice";
 import { useRef, useState } from "react";
 import { IoImages } from "react-icons/io5";
 import { MdOutlineClose } from "react-icons/md";
-import { cn } from "../../../lib/utils";
+import { UpladImageCloudinary, cn } from "../../../lib/utils";
+import { toast } from "sonner";
+import { usePostComunityPostMutation } from "../../../redux/features/post/postApi";
 
 const PostModal = () => {
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [text, setText] = useState<null | string>();
   const [openImageBox, setOpenImageBox] = useState(false);
   const [showName, setShowName] = useState<any>({});
   const [showImagePreview, setShowImagePreview] = useState<any>({});
   const fileInputRef = useRef<any>();
+  const [postCommunity] = usePostComunityPostMutation();
   const handleClearFile = () => {
     setShowName("");
     setShowImagePreview("");
     fileInputRef.current.value = "";
   };
   const user = useAppSelector(useCurrentUser);
+
+  const onSubmit = async () => {
+    const toastID = toast.loading("Posting...");
+    try {
+      let imageUrl = "";
+      if (showName.file) {
+        imageUrl = await UpladImageCloudinary(showName);
+      }
+      const date = new Date();
+      const response = await postCommunity({
+        userEmail: user?.email,
+        text,
+        img: imageUrl,
+        like: [],
+        dislike: [],
+        comment: [],
+        date: date,
+      });
+      if ("data" in response && response.data.success) {
+        toast.success(response.data.message, { id: toastID });
+      }
+      setOpenModal(false);
+    } catch (error: any) {
+      toast.error(error.message || "Something went wrong", { id: toastID });
+    }
+  };
   return (
-    <Modal>
+    <Modal onOpen={openModal} onToogle={() => setOpenModal((prev) => !prev)}>
       <Modal.ToggleButton className="w-full">
-        <button className="text-gray-400 bg-slate-100 dark:bg-slate-800 w-full px-5 rounded-full py-2 hover:bg-slate-200">
+        <button className="text-gray-400 bg-slate-100 text-left dark:bg-slate-800 w-full px-5 rounded-full py-2 hover:bg-slate-200">
           What's On Your Mind?
         </button>
       </Modal.ToggleButton>
@@ -173,6 +203,7 @@ const PostModal = () => {
             </button>
 
             <button
+              onClick={onSubmit}
               disabled={!text && !showName?.name}
               className={cn(" bg-[#2f1793] text-white px-4 py-1 rounded-sm", {
                 "bg-[#2f1793]/10": !text && !showName?.name,

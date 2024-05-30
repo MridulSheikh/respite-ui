@@ -34,3 +34,18 @@ export interface TLeaderBoardEntry {
   highestDonation: number;
   lastDonationDate: string;
 }
+
+export type TCommunityPosts = {
+  userEmail: string;
+  _id: string;
+  text: string;
+  img: string;
+  like: {
+    email: string;
+  }[];
+  dislike: {
+    email: string;
+  }[];
+  comment: string[];
+  date: string;
+};
