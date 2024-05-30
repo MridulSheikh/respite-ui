@@ -1,0 +1,15 @@
+.gallery-slider .swiper-pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+  gap: 12px;
+}
+
+.gallery-slider .swiper-pagination-bullet {
+  transition: width 0.3s ease-in-out;
+}
+
+.gallery-slider .swiper-pagination-bullet-active {
+  background-color: #2f1793;
+  width: 25px;
+}
