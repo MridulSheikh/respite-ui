@@ -32,6 +32,7 @@ Then add .env file like this
 
 ```
 VITE_API_CLOUDINARY_URL=coludinary_api_url
+VITE_API_GOOGLE_CLIENT_ID=your_google_client_id
 ```
 
 Then run this command to start app on development server
