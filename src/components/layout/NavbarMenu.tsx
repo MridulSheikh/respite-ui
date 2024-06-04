@@ -31,9 +31,9 @@ const NavbarMenu = () => {
         <Menu.toogleButton className=" gap-y-7 text-gray-900 dark:text-gray-100 text-base font-medium flex flex-col justify-center items-center h-full">
           <Link to={"/supplies"}>Supplies</Link>
           <Link to={"/leaderboard"}>Leaderboard</Link>
+          <Link to={"/community"}>Community</Link>
           {!userToken ? (
             <>
-              <Link to={"/community"}>Community</Link>
               <Link to={"/login"}>Login</Link>
               <Link to="/register">
                 <button className=" py-1.5 px-5 bg-[#2f1793] text-white rounded-sm  ease-in-out duration-200 relative hover:scale-95">
