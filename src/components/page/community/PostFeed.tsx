@@ -5,7 +5,7 @@ import { TCommunityPosts } from "../../../types/types";
 import PostCard from "./PostCard";
 
 const PostFeed = () => {
-  const { data, isLoading } = useGetPostsQuery(null, {
+  const { data, isLoading } = useGetPostsQuery("hygen products", {
     refetchOnMountOrArgChange: true,
     refetchOnReconnect: true,
   });
@@ -43,6 +43,7 @@ const PostFeed = () => {
         <div>
           {posts.map((dt) => (
             <PostCard
+              name={dt.name}
               userEmail={dt.userEmail}
               key={dt._id}
               _id={dt._id}

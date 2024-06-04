@@ -5,6 +5,7 @@ import { useLoginUserMutation } from "../../../redux/features/auth/authApi";
 import { useAppDispatch } from "../../../redux/hook";
 import { setUser } from "../../../redux/features/auth/authSlice";
 import { verifyToken } from "../../../lib/utils";
+import AuthGoolgelogin from "../../shared/OAuthlogin/Goolgelogin";
 
 type TInputs = {
   email: string;
@@ -35,9 +36,15 @@ const Login = () => {
     }
   };
   return (
-    <div className="bg-[#f4f5f6] dark:bg-black">
-      <Toaster />
-      <div className=" flex justify-center items-center h-[calc(100vh-80px)]">
+    <div className=" h-screen w-full grid lg:grid-cols-5">
+      <div className="  hidden lg:inline-block relative w-full h-full col-span-3">
+        <div className="absolute top-0 w-full h-full bg-gradient-to-l from-white dark:from-black dark:to-black/25 to-white/25" />
+        <img
+          className=" object-cover object-center w-full h-full"
+          src="/image/login/banner.jpg"
+        />
+      </div>
+      <div className=" flex flex-col col-span-2 justify-center items-center dark:bg-black">
         <form
           onSubmit={handleSubmit(onSubmit)}
           className="  mx-auto bg-white dark:bg-slate-900 p-7 rounded-md border dark:border-slate-500"
@@ -89,6 +96,8 @@ const Login = () => {
           <button className=" py-2 bg-[#061c3c] text-white mt-5 w-full rounded-md hover:bg-[#15243b]">
             Login
           </button>
+          <div className=" text-center my-3 dark:text-white">or</div>
+          <AuthGoolgelogin />
           <p className=" mt-5 text-center dark:text-gray-300">
             Are you new?{" "}
             <Link
@@ -98,12 +107,8 @@ const Login = () => {
               Create an Account
             </Link>
           </p>
-          {/* <div className=" flex justify-center items-center gap-x-2 mt-5">
-            <div className=" h-0.5 bg-slate-600 w-full" />
-            <h2>OR</h2>
-            <div className=" h-0.5 bg-slate-600 w-full" />
-          </div> */}
         </form>
+        <Toaster />
       </div>
     </div>
   );

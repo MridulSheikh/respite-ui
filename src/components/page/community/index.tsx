@@ -6,7 +6,7 @@ const Community = () => {
   return (
     <div className="bg-[#f4f5f6] dark:bg-black">
       <Toaster />
-      <div className=" pt-5 lg:max-w-[500px] mx-auto px-5">
+      <div className=" py-5 lg:max-w-[500px] mx-auto px-5">
         <PostButton />
         <PostFeed />
       </div>

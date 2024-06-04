@@ -38,7 +38,7 @@ const fakeTopDono = [
     position: "Artist",
     company: "Alen Walker",
     image:
-      "https://ngs-space1.sgp1.digitaloceanspaces.com/am/uploads/mediaGallery/image/1650535592734.jpg-org",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXeJIh6IaAki4HoZJjZ5K-1508UxtIzEm2Bw&s",
     donateAmount: 200000,
     discription:
       "After building a massive social following and releasing a string of successful singles like Alone and Darkside, collaborating with artists like Ava Max, Noah Cyrus, Sia, Bruno Mars and Coldplay, the chart-topping debut album Different World arrived in late 2018, amassing over 3,2 billion streams on Spotify.",
@@ -60,7 +60,7 @@ const fakeTopDono = [
     position: "CEO",
     company: "Gari Vee",
     image:
-      "https://media.licdn.com/dms/image/D4E03AQEaXjRUylU59g/profile-displayphoto-shrink_800_800/0/1684164403110?e=2147483647&v=beta&t=Zr4ctb5cvyXHUsLVB4Ctdtt75_HDZii2cbcN-0xEeDE",
+      "https://imageio.forbes.com/specials-images/imageserve/5a3407f64bbe6f192f088338/0x0.jpg?format=jpg&crop=1364,1364,x205,y130,safe&height=416&width=416&fit=bounds",
     donateAmount: 200000,
     discription:
       "After building a massive social following and releasing a string of successful singles like Alone and Darkside, collaborating with artists like Ava Max, Noah Cyrus, Sia, Bruno Mars and Coldplay, the chart-topping debut album Different World arrived in late 2018, amassing over 3,2 billion streams on Spotify.",

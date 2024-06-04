@@ -2,6 +2,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { Toaster, toast } from "sonner";
 import { useUserRegistrationMutation } from "../../../redux/features/auth/authApi";
+import AuthGoolgelogin from "../../shared/OAuthlogin/Goolgelogin";
 
 type TInputs = {
   name: string;
@@ -116,6 +117,8 @@ const Registration = () => {
           >
             Registration
           </button>
+          <div className=" text-center my-3 dark:text-white">or</div>
+          <AuthGoolgelogin />
           <p className=" mt-5 text-center dark:text-gray-200">
             Alrady have an Account?{" "}
             <Link

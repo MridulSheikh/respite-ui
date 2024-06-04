@@ -7,6 +7,8 @@ import DonateModal from "../../../ui/modal/DonateModal";
 type TGetSingleDataQuery = {
   data: { data: TSupply };
   isLoading: boolean;
+  isError: boolean;
+  error: any;
 };
 
 const SupplyDetails = () => {

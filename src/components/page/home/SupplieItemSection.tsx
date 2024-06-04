@@ -5,10 +5,13 @@ import { TSupply } from "../../../types/types";
 import SupplyItemGropuSkeleton from "../../ui/skeleton/SupplyItemGropuSkeleton";
 
 const SupplieItemSection = () => {
-  const { data, isLoading } = useGetSupplyQuery(null, {
-    refetchOnMountOrArgChange: true,
-    refetchOnReconnect: true,
-  });
+  const { data, isLoading } = useGetSupplyQuery(
+    { category: "" },
+    {
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
+    }
+  );
   // @ts-ignore
   const supplies = data?.data as TSupply[];
   return (

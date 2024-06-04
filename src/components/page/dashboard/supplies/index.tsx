@@ -12,10 +12,13 @@ import {
 } from "../../../../redux/features/supply/supplyApi";
 
 const ManageSupplies = () => {
-  const { data, isLoading, isError } = useGetSupplyQuery(null, {
-    refetchOnMountOrArgChange: true,
-    refetchOnReconnect: true,
-  });
+  const { data, isLoading, isError } = useGetSupplyQuery(
+    { category: "" },
+    {
+      refetchOnMountOrArgChange: true,
+      refetchOnReconnect: true,
+    }
+  );
   // @ts-ignore
   const supplies = data?.data;
   const [deleteSupply] = useDeleteSupplyMutation();

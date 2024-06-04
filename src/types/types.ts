@@ -36,6 +36,7 @@ export interface TLeaderBoardEntry {
 }
 
 export type TCommunityPosts = {
+  name: string;
   userEmail: string;
   _id: string;
   text: string;

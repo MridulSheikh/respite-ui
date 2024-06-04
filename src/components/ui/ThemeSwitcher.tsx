@@ -17,7 +17,6 @@ const ThemeSwitcher = () => {
   const handleThemeSwitcher = () => {
     dispatch(toogle());
   };
-  console.log(theme);
   return (
     <div
       className="flex items-center gap-x-2 cursor-pointer"

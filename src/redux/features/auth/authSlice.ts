@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
-type TAuthState = {
+export type TAuthState = {
   user: null | TUser;
   token: null | string;
 };
 
 type TUser = {
   email: string;
+  exp: number | null;
+  name: string;
 };
 
 const initialState: TAuthState = {

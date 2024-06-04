@@ -13,7 +13,7 @@ const PostModal = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [text, setText] = useState<null | string>();
   const [openImageBox, setOpenImageBox] = useState(false);
-  const [showName, setShowName] = useState<any>({});
+  const [showName, setShowName] = useState<any>(null);
   const [showImagePreview, setShowImagePreview] = useState<any>({});
   const fileInputRef = useRef<any>();
   const [postCommunity] = usePostComunityPostMutation();
@@ -28,11 +28,12 @@ const PostModal = () => {
     const toastID = toast.loading("Posting...");
     try {
       let imageUrl = "";
-      if (showName.file) {
+      if (showName) {
         imageUrl = await UpladImageCloudinary(showName);
       }
       const date = new Date();
       const response = await postCommunity({
+        name: user?.name,
         userEmail: user?.email,
         text,
         img: imageUrl,
@@ -87,7 +88,7 @@ const PostModal = () => {
               </div>
               <input
                 placeholder="What's on Your mind?"
-                className=" w-full outline-none mt-5 mb-5 text-lg max-h-full scrollbar-none"
+                className=" w-full outline-none mt-5 mb-5 text-lg max-h-full scrollbar-none bg-transparent dark:text-white"
                 onChange={(e) => setText(e.target.value)}
               />
               {/* image upload */}
@@ -132,14 +133,14 @@ const PostModal = () => {
                     </div>
                   ) : (
                     <label
-                      className=" mx-auto flex max-w-[600px] flex-col items-center justify-center space-y-3 rounded-lg border-2 border-dashed border-gray-400 p-6 bg-white relative"
+                      className=" mx-auto flex max-w-[600px] flex-col items-center justify-center space-y-3 rounded-lg border-2 border-dashed border-gray-400 p-6 bg-transparent dark:text-gray-400 relative"
                       htmlFor="file5"
                     >
                       <button
                         onClick={() => setOpenImageBox((prev) => !prev)}
                         className=" text-2xl text-gray-600 absolute top-2 right-2"
                       >
-                        <MdOutlineClose />
+                        <MdOutlineClose className=" dark:text-gray-300" />
                       </button>
                       <svg
                         width={50}
@@ -197,9 +198,9 @@ const PostModal = () => {
               )}
             </div>
           </div>
-          <div className=" bg-white dark:bg-slate-800 w-full py-5 sticky bottom-0 px-5 border-t flex justify-between items-center ">
+          <div className=" bg-white dark:bg-slate-800 w-full py-5 sticky bottom-0 px-5 border-t dark:border-t-slate-700 flex justify-between items-center ">
             <button onClick={() => setOpenImageBox(true)} className=" text-xl">
-              <IoImages />
+              <IoImages className=" dark:text-gray-300" />
             </button>
 
             <button
