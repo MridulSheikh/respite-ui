@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import moment from "moment";
 type TPostCardProps = {
