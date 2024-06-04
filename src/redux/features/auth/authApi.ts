@@ -1,6 +1,7 @@
 import { baseApi } from "../../api/baseApi";
 
 type TResponseUser = {
+  token: any;
   data: {
     message: string;
     success: boolean;

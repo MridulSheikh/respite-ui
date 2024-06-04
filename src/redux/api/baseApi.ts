@@ -4,7 +4,7 @@ import { TAuthState } from "../features/auth/authSlice";
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
+    baseUrl: "https://respite-ui-2-0.vercel.app/api/v1",
     prepareHeaders: (headers, { getState }) => {
       const { auth } = getState() as { auth: TAuthState };
       const authHeader = "bearer" + " " + auth.token;
