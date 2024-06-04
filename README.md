@@ -12,7 +12,7 @@
 
 #### Overview:
 
-This project is mainly focused on animation and reusable components and RTK queries. Typescript is used here. Supplies data performed crud operations with tanstack queries. Also Coludinary use for image upload on Cloud.
+This project is mainly focused on animation and reusable components and RTK queries. Typescript is used here. Supplies data performed crud operations with react-redux-toolkit queries. Also Coludinary use for image upload on Cloud.
 
 #### Setup:
 
