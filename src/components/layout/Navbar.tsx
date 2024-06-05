@@ -1,6 +1,10 @@
 import { GiBrokenHeartZone } from "react-icons/gi";
 import { Link } from "react-router-dom";
-import { logout, useCurrentToken } from "../../redux/features/auth/authSlice";
+import {
+  logout,
+  useCurrentToken,
+  useCurrentUser,
+} from "../../redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hook";
 import { SlLogout } from "react-icons/sl";
 import { useState } from "react";
@@ -8,9 +12,12 @@ import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import NavbarMenu from "./NavbarMenu";
 import ThemeSwitcher from "../ui/ThemeSwitcher";
+import UserAvator from "../shared/UserAvator";
 
 const Navbar = () => {
   const userToken = useAppSelector(useCurrentToken);
+  const user = useAppSelector(useCurrentUser);
+  const [open, setOpen] = useState(false);
   const dispatch = useAppDispatch();
   const [hidden, setHidden] = useState(false);
   const { scrollY } = useScroll();
@@ -105,14 +112,36 @@ const Navbar = () => {
                 </Link>
               </span>
 
-              <button
-                onClick={() => dispatch(logout())}
-                className=" py-1.5 px-5 bg-[#2f1793] flex gap-x-2 items-center text-white rounded-sm  ease-in-out duration-200 relative hover:scale-95"
+              <div
+                onClick={() => setOpen((Prev) => !Prev)}
+                className=" flex items-center gap-x-1.5 rounded-sm cursor-pointer relative"
               >
-                <SlLogout />
-                Logout
-                <div className="w-full h-full border-2 border-[#2f1793] bg-none absolute -right-1 -bottom-1 z-0" />
-              </button>
+                <UserAvator src={user?.img} className="size-9" />
+
+                {open && (
+                  <div className=" bg-white dark:bg-slate-900 dark:border-none dark:text-white rounded-md absolute p-3 top-[60px] right-0  shadow-sm border animate-fade-down animate-duration-500 w-40">
+                    <Link
+                      to={"/dashboard/profile"}
+                      className="py-2 px-3 w-full block  hover:bg-gray-100 dark:hover:bg-slate-800 rounded-sm  ease-in-out duration-200"
+                    >
+                      Your Profile
+                    </Link>
+                    <Link
+                      to={"/dashboard/setting"}
+                      className="py-2 px-3 w-full block  hover:bg-gray-100 dark:hover:bg-slate-800 rounded-sm  ease-in-out duration-200"
+                    >
+                      Settings
+                    </Link>
+                    <button
+                      onClick={() => dispatch(logout())}
+                      className="flex items-center gap-x-2 py-2 px-3 w-full  hover:bg-gray-100 dark:hover:bg-slate-800 rounded-sm  ease-in-out duration-200"
+                    >
+                      <SlLogout />
+                      Logout
+                    </button>
+                  </div>
+                )}
+              </div>
             </>
           )}
           <ThemeSwitcher />

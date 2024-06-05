@@ -1,8 +1,10 @@
 import { AiOutlineDislike, AiOutlineLike } from "react-icons/ai";
 import moment from "moment";
+import UserAvator from "../../shared/UserAvator";
 type TPostCardProps = {
   name: string;
   userEmail: string;
+  userImage: string;
   _id: string;
   text: string;
   image: string;
@@ -17,6 +19,7 @@ type TPostCardProps = {
 };
 
 const PostCard = ({
+  userImage,
   name,
   text,
   image,
@@ -28,13 +31,7 @@ const PostCard = ({
     <div className="bg-white mt-4 dark:bg-slate-900 dark:border-slate-700 border rounded-md">
       {/* Avatar image  */}
       <div className="flex items-center gap-3 p-3">
-        <div className=" size-10 overflow-hidden rounded-full relative">
-          <img
-            className=" object-cover object-center bg-black/40"
-            src={"/image/login/user.jpg"}
-            alt="user image"
-          />
-        </div>
+        <UserAvator src={userImage} />
         <div className="flex flex-col">
           <h2 className=" text-md font-semibold dark:text-white">{name}</h2>
           <span className="text-gray-400 text-xs font-normal">

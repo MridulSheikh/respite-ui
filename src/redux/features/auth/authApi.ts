@@ -12,6 +12,8 @@ type TResponseUser = {
 type TPayload = {
   email: string;
   name: string;
+  img?: string;
+  password?: string;
 };
 
 const authApi = baseApi.injectEndpoints({
@@ -43,6 +45,13 @@ const authApi = baseApi.injectEndpoints({
         body: data,
       }),
     }),
+    updatePassword: builder.mutation({
+      query: (data) => ({
+        url: "/auth/update-password",
+        method: "PATCH",
+        body: data,
+      }),
+    }),
   }),
 });
 
@@ -51,4 +60,5 @@ export const {
   useLoginUserMutation,
   useVerifyTokenQuery,
   useOAuthLoginMutation,
+  useUpdatePasswordMutation,
 } = authApi;

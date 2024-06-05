@@ -45,57 +45,61 @@ const Login = () => {
         />
       </div>
       <div className=" flex flex-col col-span-2 justify-center items-center dark:bg-black">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="  mx-auto bg-white dark:bg-slate-900 p-7 rounded-md border dark:border-slate-500"
-        >
-          <div>
-            <label
-              htmlFor="email"
-              className="  text-gray-700 dark:text-gray-300"
-            >
-              Email
-            </label>
-            <br />
-            <input
-              placeholder="example@gmail.com"
-              className="px-3 py-2 border rounded-sm w-full mt-1.5"
-              {...register("email", { required: "email field required!" })}
-            />
-            {errors.email && (
-              <p className=" text-red-600 text-sm mt-1">
-                {errors.email.message}
-              </p>
-            )}
-          </div>
-          <div className=" mt-5">
-            <label
-              htmlFor="email"
-              className="  text-gray-700 dark:text-gray-300"
-            >
-              Password
-            </label>
-            <br />
-            <input
-              type="password"
-              placeholder="#######"
-              className="px-3 py-2 border rounded-sm w-full mt-1.5"
-              {...register("password", {
-                required: "password field required!",
-              })}
-            />
-            {errors.password && (
-              <p className=" text-red-600 text-sm mt-1">
-                {errors.password.message}
-              </p>
-            )}
-          </div>
-          <p className=" text-right  text-sm mt-3 text-[#061c3c] dark:text-blue-300 hover:underline cursor-pointer font-medium">
-            Forgot Password?
-          </p>
-          <button className=" py-2 bg-[#061c3c] text-white mt-5 w-full rounded-md hover:bg-[#15243b]">
-            Login
-          </button>
+        <div className="  mx-auto bg-white dark:bg-slate-900 p-7 rounded-md border dark:border-slate-500">
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div>
+              <label
+                htmlFor="email"
+                className="  text-gray-700 dark:text-gray-300"
+              >
+                Email
+              </label>
+              <br />
+              <input
+                placeholder="example@gmail.com"
+                className="px-3 py-2 border rounded-sm w-full mt-1.5"
+                {...register("email", { required: "email field required!" })}
+              />
+              {errors.email && (
+                <p className=" text-red-600 text-sm mt-1">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+            <div className=" mt-5">
+              <label
+                htmlFor="email"
+                className="  text-gray-700 dark:text-gray-300"
+              >
+                Password
+              </label>
+              <br />
+              <input
+                type="password"
+                placeholder="#######"
+                className="px-3 py-2 border rounded-sm w-full mt-1.5"
+                {...register("password", {
+                  required: "password field required!",
+                  minLength: {
+                    value: 8,
+                    message: "minimum 8 character required",
+                  },
+                })}
+              />
+              {errors.password && (
+                <p className=" text-red-600 text-sm mt-1">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+            <p className=" text-right  text-sm mt-3 text-[#061c3c] dark:text-blue-300 hover:underline cursor-pointer font-medium">
+              Forgot Password?
+            </p>
+            <button className=" py-2 bg-[#061c3c] text-white mt-5 w-full rounded-md hover:bg-[#15243b]">
+              Login
+            </button>
+          </form>
+
           <div className=" text-center my-3 dark:text-white">or</div>
           <AuthGoolgelogin />
           <p className=" mt-5 text-center dark:text-gray-300">
@@ -107,7 +111,7 @@ const Login = () => {
               Create an Account
             </Link>
           </p>
-        </form>
+        </div>
         <Toaster />
       </div>
     </div>

@@ -43,6 +43,7 @@ const PostFeed = () => {
         <div>
           {posts.map((dt) => (
             <PostCard
+              userImage={dt.userImage}
               name={dt.name}
               userEmail={dt.userEmail}
               key={dt._id}

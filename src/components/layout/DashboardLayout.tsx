@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import DashboardNavbar from "./DashboardNavbar";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
+import useOnAuthChange from "../../hooks/useOnAuthChange";
 
 export type TSideBarContext = {
   isSidebarOpen: boolean;
@@ -11,6 +12,7 @@ export type TSideBarContext = {
 export const SidebarContext = createContext<TSideBarContext | null>(null);
 
 const DashboardLayout = () => {
+  useOnAuthChange();
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
   return (
     <SidebarContext.Provider value={{ isSidebarOpen, setIsSidebarOpen }}>

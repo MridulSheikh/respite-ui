@@ -13,6 +13,7 @@ import ProtectedRoute from "../components/layout/ProtectedRoute";
 import Page404 from "../components/ui/Page404";
 import LeaderBoard from "../components/page/leaderboard";
 import Community from "../components/page/community";
+import ProfileManageMent from "../components/page/dashboard/ProfileManageMent";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "create-supply",
         element: <CreateSupply />,
+      },
+      {
+        path: "profile",
+        element: <ProfileManageMent />,
       },
     ],
   },

@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FaChevronLeft } from "react-icons/fa";
+import { FaChevronLeft, FaHouseUser } from "react-icons/fa";
 import { FaSitemap } from "react-icons/fa6";
 import { GiBrokenHeartZone } from "react-icons/gi";
 import { MdOutlineDashboard } from "react-icons/md";
@@ -17,6 +17,11 @@ const sidebarLinks = [
     icon: FaSitemap,
     name: "Supplies",
     link: "/dashboard/supplies",
+  },
+  {
+    icon: FaHouseUser,
+    name: "Profile",
+    link: "/dashboard/profile",
   },
 ];
 

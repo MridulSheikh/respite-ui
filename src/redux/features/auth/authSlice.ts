@@ -10,6 +10,7 @@ type TUser = {
   email: string;
   exp: number | null;
   name: string;
+  img: string;
 };
 
 const initialState: TAuthState = {

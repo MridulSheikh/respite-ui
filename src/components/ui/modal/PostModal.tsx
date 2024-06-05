@@ -35,6 +35,7 @@ const PostModal = () => {
       const response = await postCommunity({
         name: user?.name,
         userEmail: user?.email,
+        userImage: user?.img,
         text,
         img: imageUrl,
         like: [],
