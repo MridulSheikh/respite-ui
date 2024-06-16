@@ -66,7 +66,7 @@ const SuppliesUpdateModal = ({
       <Modal.ToggleButton>
         <button className=" bg-green-500 text-white px-3 rounded-sm py-2 flex items-center gap-x-2 hover:bg-green-600">
           <FaPencilAlt />
-          Edite
+          Edit
         </button>
       </Modal.ToggleButton>
       <Modal.Portal>
