@@ -17,6 +17,10 @@ export type TSupply = {
   discription: string;
 };
 
+export type TSupplyQueries = {
+  data: TSupply[];
+};
+
 export const isFetchBaseQueryErrorType = (
   error: any
 ): error is FetchBaseQueryError => "status" in error;

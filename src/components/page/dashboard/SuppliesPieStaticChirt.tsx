@@ -40,7 +40,7 @@ const SuppliesPieStaticChirt = () => {
     };
   }, [statics, isLoading]);
   return (
-    <div className=" p-5 rounded-sm bg-white dark:bg-slate-900 mt-10 border dark:border-none shadow-md lg:w-[500px] ">
+    <div className=" p-5 rounded-sm bg-white dark:bg-slate-900 border dark:border-none shadow-md w-[340px] lg:w-[400px]">
       <div className=" flex justify-between items-center">
         <h1 className=" font-bold text-xl dark:text-white">Donation Statics</h1>
       </div>

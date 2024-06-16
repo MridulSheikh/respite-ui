@@ -1,9 +1,9 @@
-import { TSupply } from "../../../types/types";
+import { TSupplyQueries } from "../../../types/types";
 import { baseApi } from "../../api/baseApi";
 
 const supplyApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getSupply: builder.query<TSupply[], { category: string | "" }>({
+    getSupply: builder.query<TSupplyQueries, { category: string | "" }>({
       query: (filter) => ({
         url: `/supplies`,
         method: "GET",

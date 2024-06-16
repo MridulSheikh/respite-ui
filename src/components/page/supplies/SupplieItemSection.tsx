@@ -28,7 +28,7 @@ const SupplieItemSection = () => {
   // @ts-ignore
   let supplies = data?.data;
   if (searchText) {
-    supplies = supplies.filter(
+    supplies = supplies?.filter(
       (item: TSupply) =>
         item.title.toLowerCase().includes(searchText.toLowerCase()) ||
         item.category.toLocaleLowerCase().includes(searchText.toLowerCase())

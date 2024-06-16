@@ -49,8 +49,18 @@ const LeaderBoard = () => {
                         {dt.name}
                       </td>
                       <td className="px-6 py-4">{dt.userEmail}</td>
-                      <td className="px-6 py-4">${dt.highestDonation}</td>
-                      <td className="px-6 py-4">${dt.totalDonations}</td>
+                      <td className="px-6 py-4">
+                        $
+                        {dt.highestDonation
+                          .toFixed(2)
+                          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+                      </td>
+                      <td className="px-6 py-4">
+                        $
+                        {dt.totalDonations
+                          .toFixed(2)
+                          .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

@@ -43,7 +43,7 @@ const DashboardNavbar = () => {
             {open && (
               <div className=" bg-white dark:bg-slate-900 dark:border-none dark:text-white rounded-md absolute p-3 top-[60px] right-0  shadow-sm border animate-fade-down animate-duration-500 w-40">
                 <Link
-                  to={"/dashboard/profile-management"}
+                  to={"/dashboard/profile"}
                   className="py-2 px-3 w-full block  hover:bg-gray-100 dark:hover:bg-slate-800 rounded-sm  ease-in-out duration-200"
                 >
                   Your Profile
