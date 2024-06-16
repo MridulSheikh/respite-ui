@@ -30,6 +30,7 @@ const Login = () => {
       dispatch(setUser({ user: user, token: response.token }));
       navigate("/dashboard");
     } catch (error: any) {
+      console.log(error);
       toast.error(error.data.message || "Something Went Wrong!", {
         id: toastID,
       });

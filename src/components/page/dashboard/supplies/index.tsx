@@ -10,8 +10,10 @@ import {
   useDeleteSupplyMutation,
   useGetSupplyQuery,
 } from "../../../../redux/features/supply/supplyApi";
+import { useState } from "react";
 
 const ManageSupplies = () => {
+  const [searchText, setSearchText] = useState("");
   const { data, isLoading, isError } = useGetSupplyQuery(
     { category: "" },
     {
@@ -20,7 +22,14 @@ const ManageSupplies = () => {
     }
   );
   // @ts-ignore
-  const supplies = data?.data;
+  let supplies = data?.data;
+  if (searchText) {
+    supplies = supplies.filter(
+      (item: TSupply) =>
+        item.title.toLowerCase().includes(searchText.toLowerCase()) ||
+        item.category.toLocaleLowerCase().includes(searchText.toLowerCase())
+    );
+  }
   const [deleteSupply] = useDeleteSupplyMutation();
   const handleDeleteSupply = async (id: string) => {
     const toastID = toast.loading("Pending...");
@@ -33,17 +42,28 @@ const ManageSupplies = () => {
       toast.error("Something went wrong", { id: toastID });
     }
   };
+  console.log(searchText);
   return (
     <div className="p-5">
       <Toaster />
-      <div className=" flex justify-between items-center dark:text-white">
+      <div className=" lg:flex justify-between items-center dark:text-white">
         <h1>Dashboard / Supplies</h1>
-        <Link to={"/dashboard/create-supply"}>
-          <button className=" px-3 py-2 bg-[#3c50e0] text-white rounded-sm hover:opacity-90 flex items-center gap-x-1">
-            <IoIosAdd className=" text-2xl" />
-            Create Supply
-          </button>
-        </Link>
+        <div className=" lg:flex gap-x-3 items-center">
+          <div>
+            <input
+              onChange={(e) => setSearchText(e.target.value)}
+              className=" px-3 py-2 rounded-md border w-full lg:w-80 dark:bg-slate-800 dark:border-slate-600 my-5 lg:my-0"
+              placeholder="Search by title & category"
+              type="search"
+            />
+          </div>
+          <Link to={"/dashboard/create-supply"} className="">
+            <button className=" px-3 py-2 bg-[#3c50e0] text-white rounded-sm hover:opacity-90 flex items-center gap-x-1">
+              <IoIosAdd className=" text-2xl" />
+              Create Supply
+            </button>
+          </Link>
+        </div>
       </div>
 
       {/* for small device */}
