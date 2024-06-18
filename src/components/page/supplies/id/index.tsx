@@ -82,6 +82,7 @@ const SupplyDetails = () => {
             title={supply?.data?.title}
             image={supply?.data?.image}
             category={supply?.data?.category}
+            supplierAccount={supply?.data?.createBy as string}
           />
         </div>
       </div>

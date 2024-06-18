@@ -15,6 +15,7 @@ export type TSupply = {
   rised: number;
   goal: number;
   discription: string;
+  createBy?: string;
 };
 
 export type TSupplyQueries = {
@@ -54,4 +55,16 @@ export type TCommunityPosts = {
   }[];
   comment: string[];
   date: string;
+};
+
+export type TDonation = {
+  _id: string;
+  name: string;
+  address: string;
+  phone: string;
+  amount: 20000;
+  userEmail: string;
+  supplyId: string;
+  category: string;
+  suppliredAccount: string;
 };

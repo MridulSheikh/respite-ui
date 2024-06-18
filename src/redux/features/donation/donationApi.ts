@@ -1,4 +1,8 @@
-import { TDonationStatic, TLeaderBoardEntry } from "../../../types/types";
+import {
+  TDonation,
+  TDonationStatic,
+  TLeaderBoardEntry,
+} from "../../../types/types";
 import { baseApi } from "../../api/baseApi";
 
 const donationApi = baseApi.injectEndpoints({
@@ -11,16 +15,31 @@ const donationApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["donation"],
     }),
-    getDonationStatic: builder.query<{ data: TDonationStatic[] }, null>({
-      query: () => ({
+    getDonationStatic: builder.query<
+      { data: TDonationStatic[] },
+      { [key: string]: string | any }
+    >({
+      query: (query) => ({
         url: "/donations/statics",
         method: "GET",
+        params: query,
       }),
     }),
     getDonationLeaderBoard: builder.query<{ data: TLeaderBoardEntry[] }, null>({
       query: () => ({
         url: "/donations/leaderboard",
         method: "GET",
+      }),
+      providesTags: ["donation"],
+    }),
+    getDonations: builder.query<
+      { body: TDonation[] },
+      { [key: string]: string | any }
+    >({
+      query: (query) => ({
+        url: "/donations",
+        method: "GET",
+        params: query,
       }),
       providesTags: ["donation"],
     }),
@@ -31,4 +50,5 @@ export const {
   usePostDonationMutation,
   useGetDonationStaticQuery,
   useGetDonationLeaderBoardQuery,
+  useGetDonationsQuery,
 } = donationApi;

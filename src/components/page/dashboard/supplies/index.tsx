@@ -11,11 +11,14 @@ import {
   useGetSupplyQuery,
 } from "../../../../redux/features/supply/supplyApi";
 import { useState } from "react";
+import { useAppSelector } from "../../../../redux/hook";
+import { useCurrentUser } from "../../../../redux/features/auth/authSlice";
 
 const ManageSupplies = () => {
   const [searchText, setSearchText] = useState("");
+  const user = useAppSelector(useCurrentUser);
   const { data, isLoading, isError } = useGetSupplyQuery(
-    { category: "" },
+    { createBy: user?.email },
     {
       refetchOnMountOrArgChange: true,
       refetchOnReconnect: true,

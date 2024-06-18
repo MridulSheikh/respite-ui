@@ -4,10 +4,16 @@ import { useEffect, useRef } from "react";
 import { useGetDonationStaticQuery } from "../../../redux/features/donation/donationApi";
 import { TDonationStatic } from "../../../types/types";
 import Skeleton from "../../../lib/tailwind-skeleton-react";
+import { useAppSelector } from "../../../redux/hook";
+import { useCurrentUser } from "../../../redux/features/auth/authSlice";
 const SuppliesPieStaticChirt = () => {
+  const user = useAppSelector(useCurrentUser);
   const chartRef = useRef(null);
   const chartInstance = useRef<Chart | null>(null);
-  const { data: statics, isLoading } = useGetDonationStaticQuery(null);
+  const { data: statics, isLoading } = useGetDonationStaticQuery({
+    email: user?.email,
+  });
+  console.log(statics);
   useEffect(() => {
     if (chartInstance.current) {
       chartInstance.current.destroy();
@@ -51,8 +57,12 @@ const SuppliesPieStaticChirt = () => {
           </Skeleton.group>
           <Skeleton.item className=" size-72 rounded-full mt-10" />
         </Skeleton>
-      ) : (
+      ) : statics?.data.length != 0 ? (
         <canvas ref={chartRef} className=" mt-10" />
+      ) : (
+        <div className=" h-40 flex justify-center items-center">
+          Donation not found!
+        </div>
       )}
     </div>
   );

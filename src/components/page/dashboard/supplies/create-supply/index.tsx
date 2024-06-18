@@ -5,6 +5,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Toaster, toast } from "sonner";
 import { UpladImageCloudinary } from "../../../../../lib/utils";
 import { usePostSupplyMutation } from "../../../../../redux/features/supply/supplyApi";
+import { useAppSelector } from "../../../../../redux/hook";
+import { useCurrentUser } from "../../../../../redux/features/auth/authSlice";
 
 enum CategoryEnum {
   food = "food",
@@ -27,9 +29,11 @@ const CreateSupply = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
+  const user = useAppSelector(useCurrentUser);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageError, setImageError] = useState<string | null>(null);
   const [postSupply] = usePostSupplyMutation();
+  console.log(user);
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!imageFile) {
       setImageError("Please Select a Image");
@@ -38,7 +42,11 @@ const CreateSupply = () => {
     const toastID = toast.loading("posting...");
     try {
       const image = await UpladImageCloudinary(imageFile);
-      const response = await postSupply({ ...data, image: image });
+      const response = await postSupply({
+        ...data,
+        image: image,
+        createBy: user?.email,
+      });
       if ("data" in response && response.data.success) {
         toast.success(response.data.message, { id: toastID });
       }

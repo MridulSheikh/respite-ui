@@ -18,8 +18,10 @@ const options = [
 const SupplieItemSection = () => {
   const [category, setCategory] = useState({ text: "All", value: "" });
   const [searchText, setSearchText] = useState("");
+  let searchQuery;
+  if (category.value) searchQuery = { category: category.value };
   const { data, isLoading } = useGetSupplyQuery(
-    { category: category.value },
+    { ...searchQuery },
     {
       refetchOnMountOrArgChange: true,
       refetchOnReconnect: true,

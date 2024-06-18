@@ -3,13 +3,11 @@ import { baseApi } from "../../api/baseApi";
 
 const supplyApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getSupply: builder.query<TSupplyQueries, { category: string | "" }>({
+    getSupply: builder.query<TSupplyQueries, { [key: string]: string | any }>({
       query: (filter) => ({
         url: `/supplies`,
         method: "GET",
-        params: {
-          category: filter.category,
-        },
+        params: filter,
       }),
       providesTags: ["supply"],
     }),

@@ -6,7 +6,7 @@ import SupplyItemGropuSkeleton from "../../ui/skeleton/SupplyItemGropuSkeleton";
 
 const SupplieItemSection = () => {
   const { data, isLoading } = useGetSupplyQuery(
-    { category: "" },
+    {},
     {
       refetchOnMountOrArgChange: true,
       refetchOnReconnect: true,

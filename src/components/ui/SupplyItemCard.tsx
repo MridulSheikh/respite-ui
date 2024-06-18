@@ -10,7 +10,8 @@ type TSupplyItemCard = {
 };
 
 const SupplyItemCard = ({ supplyItem }: TSupplyItemCard) => {
-  const { _id, image, title, category, quantity, rised, goal } = supplyItem;
+  const { _id, image, title, category, quantity, rised, goal, createBy } =
+    supplyItem;
   return (
     <div className=" rounded-sm overflow-hidden">
       <div className=" relative w-full h-64 overflow-hidden">
@@ -60,6 +61,7 @@ const SupplyItemCard = ({ supplyItem }: TSupplyItemCard) => {
             title={title}
             image={image}
             category={category}
+            supplierAccount={createBy as string}
           >
             <button className=" py-1.5 px-5 bg-[#2f1793] text-white rounded-sm  ease-in-out duration-200 relative hover:scale-95 flex items-center gap-x-2 mt-5 justify-center lg:justify-start w-full">
               <GiHeartPlus className=" text-lg" />

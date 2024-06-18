@@ -17,6 +17,7 @@ type TDonateModal = {
   category: string;
   image: string;
   children?: ReactNode;
+  supplierAccount: string;
 };
 
 type Inputs = {
@@ -32,6 +33,7 @@ const DonateModal = ({
   category,
   image,
   children,
+  supplierAccount,
 }: TDonateModal) => {
   const {
     register,
@@ -43,14 +45,20 @@ const DonateModal = ({
   const user = useAppSelector(useCurrentUser);
   const [postDonation] = usePostDonationMutation();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
-    const body = { ...data, userEmail: user?.email, supplyId: _id, category };
+    const body = {
+      ...data,
+      userEmail: user?.email,
+      supplyId: _id,
+      category,
+      supplierAccount,
+    };
     const toastID = toast.loading("please wait...");
     try {
       const response = await postDonation(body).unwrap();
       if (response.data.insertedId) {
         toast.success("Thanks for your donaiton", { id: toastID });
         setIsOpen((prev) => !prev);
-        navigate("/dashboard");
+        // navigate("/dashboard");
       }
     } catch (error: any) {
       toast.error(error.message || "Something went wrong", { id: toastID });
